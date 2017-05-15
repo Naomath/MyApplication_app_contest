@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void solve(View view){
         //今日の問題を解く処理
+        showDialog();
 
 
     }
@@ -33,30 +35,33 @@ public class MainActivity extends AppCompatActivity {
     public void showDialog(){
         //ダイアログを表示するメソッド
         //"today"と関連している
-        new AlertDialog.Builder(this)
-        .setTitle(R.string.dialog_title)
-        .setMessage(R.string.message)
-                .setPositiveButton(R.string.dialog_today, new DialogInterface.OnClickListener() {
+        final AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title);
+        builder.setMessage(R.string.message);
+        builder.setNeutralButton(R.string.dialog_today, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //今日の問題を解く時の処理
 
                     }
-                })
-                .setNegativeButton(R.string.dialog_weak, new DialogInterface.OnClickListener() {
+                });
+        builder.setNegativeButton(R.string.dialog_weak, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //間違えやすい問題を解く時の処理
 
                     }
-                })
-                .setNeutralButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                });
+
+        builder.setPositiveButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //キャンセルする時の処理
-
+                        dialogInterface.dismiss();
                     }
-                })
-        .show();
+                });
+
+        builder.show();
     }
+
 }
