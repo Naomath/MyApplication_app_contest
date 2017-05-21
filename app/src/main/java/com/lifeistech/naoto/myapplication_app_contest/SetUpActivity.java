@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -76,5 +77,32 @@ public class SetUpActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+    public void finish(View view){
+        //グループ自体、登録ができた時の処理
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("登録");
+        builder.setMessage("登録していいですか？");
+        builder.setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //キャンセルする時の処理
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setPositiveButton("登録", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //登録する時の処理
+                make_Toast("登録しました");
+                Intent intent = new Intent(SetUpActivity.this,ListActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void make_Toast(String massage){
+        Toast.makeText(this,massage,Toast.LENGTH_SHORT).show();
     }
 }

@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void list(View view){
         //リストについて処理
-
+        Intent intent = new Intent(MainActivity.this,ListActivity.class);
+        startActivity(intent);
     }
 
     public void set_up(View view){
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 String group_name = editText.getText().toString();
                 if(group_name.length()==0){
-                    make_toast("グループの名前が登録されていません");
+                    make_Toast("グループの名前が登録されていません");
                 }else{
                     Intent intent = new Intent(MainActivity.this,SetUpActivity.class);
                     intent.putExtra("group_name",group_name);
@@ -104,9 +105,8 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void make_toast(String title){
-        Toast.makeText(this,title,Toast.LENGTH_SHORT).show();
-
+    public void make_Toast(String massage){
+        Toast.makeText(this,massage,Toast.LENGTH_SHORT).show();
 
     }
 }

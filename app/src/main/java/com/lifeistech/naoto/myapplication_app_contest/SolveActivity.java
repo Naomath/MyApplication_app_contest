@@ -13,7 +13,7 @@ public class SolveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_solove);
+        setContentView(R.layout.activity_solve);
         Intent intent = getIntent();
         test = intent.getIntExtra("test",0);
 
