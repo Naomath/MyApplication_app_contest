@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void set_up(){
+    public void set_up(View view){
         // 問題を登録する処理
        showDialog_set_up();
     }
@@ -91,12 +91,17 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("決定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String title = editText.getText().toString();
-                if(title.length()==0){
+                String group_name = editText.getText().toString();
+                if(group_name.length()==0){
                     make_toast("グループの名前が登録されていません");
+                }else{
+                    Intent intent = new Intent(MainActivity.this,SetUpActivity.class);
+                    intent.putExtra("group_name",group_name);
+                    startActivity(intent);
                 }
             }
         });
+        builder.show();
     }
 
     public void make_toast(String title){
