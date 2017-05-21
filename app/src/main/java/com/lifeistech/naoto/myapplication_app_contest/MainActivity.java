@@ -1,6 +1,7 @@
 package com.lifeistech.naoto.myapplication_app_contest;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //今日の問題を解く時の処理
+                        Intent intent = new Intent(MainActivity.this, SolveActivity.class);
+                        startActivity(intent);
+                        //これからは引数を加え、今日の問題か、間違えやすい問題かわかるようにする
 
                     }
                 });
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //間違えやすい問題を解く時の処理
+                        Intent intent = new Intent(MainActivity.this, SolveActivity.class);
+                        startActivity(intent);
+                        //これからは引数を加え、今日の問題か、間違えやすい問題かわかるようにする
 
                     }
                 });
