@@ -24,4 +24,6 @@ public class Words_sugar_orm extends SugarRecord {
         this.words_japanese = words_japanese;
         this.words_english = words_english;
     }
+    //使いづらいので以降はTwo_wordsでやることになる
+
 }

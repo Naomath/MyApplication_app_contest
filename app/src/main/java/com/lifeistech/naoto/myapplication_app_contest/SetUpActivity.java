@@ -22,6 +22,7 @@ public class SetUpActivity extends AppCompatActivity {
     TextView title;
     ArrayAdapter adapter;
     ListView listView;
+    Words_sugar_orm words_sugar_orm[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +71,10 @@ public class SetUpActivity extends AppCompatActivity {
         builder.setPositiveButton("決定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //単語を登録する時の処理
+                //単語を登録する時の処理1
                 String japanese_string = japanese_editText.getText().toString();
                 String english_string = english_edttText.getText().toString();
-                adapter.add(japanese_string + ", " + english_string);
+                //ここで処理２に受けわたす
             }
         });
         builder.show();
@@ -95,7 +96,6 @@ public class SetUpActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //登録する時の処理
-                make_Toast("登録しました");
                 Intent intent = new Intent(SetUpActivity.this,ListActivity.class);
                 startActivity(intent);
             }
