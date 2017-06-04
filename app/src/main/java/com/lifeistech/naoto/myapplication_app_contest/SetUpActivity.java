@@ -6,21 +6,18 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 public class SetUpActivity extends AppCompatActivity {
 
     //問題を登録するActivity
     String group_name;
     TextView title;
-    ArrayAdapter adapter;
+    ListviewSetUp adapter;
     ListView listView;
     Words_sugar_orm words_sugar_orm[];
 
@@ -35,7 +32,7 @@ public class SetUpActivity extends AppCompatActivity {
         //グループの名前をだすtextviewを登録した
         title.setText(group_name);
         listView = (ListView)findViewById(R.id.listView);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1);
+        adapter = new ListviewSetUp(this, R.layout.listview_set_up);
         listView.setAdapter(adapter);
     }
     public void dialog_set_up(View view){
@@ -74,7 +71,16 @@ public class SetUpActivity extends AppCompatActivity {
                 //単語を登録する時の処理1
                 String japanese_string = japanese_editText.getText().toString();
                 String english_string = english_edttText.getText().toString();
-                //ここで処理２に受けわたす
+                if(japanese_string == null){
+                    make_Toast("和訳が書かれていません");
+                } else if(english_edttText == null){
+                    make_Toast("スペルが書かれていません");
+                }else{
+                    Two_words two_words = new Two_words(group_name, japanese_string, english_string);
+                    //two_words.save();
+                    adapter.add(two_words);
+                }
+
             }
         });
         builder.show();

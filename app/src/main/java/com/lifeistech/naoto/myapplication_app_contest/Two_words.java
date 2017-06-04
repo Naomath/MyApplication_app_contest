@@ -14,7 +14,10 @@ public class Two_words extends SugarRecord {
     //wordの和訳
     String words_english;
     //wordのスペルの管理
+    /*
+
     String date;
+    */
     //登録した日付の管理
 
     public Two_words(){
@@ -22,10 +25,12 @@ public class Two_words extends SugarRecord {
         //使うことはない
     }
 
-    public Two_words(String title, String words_japanese, String words_english, String date){
+    public Two_words(String title, String words_japanese, String words_english){
         this.title = title;
         this.words_japanese = words_japanese;
         this.words_english = words_english;
+        /*
         this.date = date;
+        */
     }
 }
