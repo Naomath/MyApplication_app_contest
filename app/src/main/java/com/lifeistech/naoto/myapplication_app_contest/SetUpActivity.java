@@ -2,6 +2,9 @@ package com.lifeistech.naoto.myapplication_app_contest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +69,7 @@ public class SetUpActivity extends AppCompatActivity {
             }
         });
         builder.setPositiveButton("決定", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //単語を登録する時の処理1
@@ -76,6 +80,18 @@ public class SetUpActivity extends AppCompatActivity {
                 } else if(english_edttText == null){
                     make_Toast("スペルが書かれていません");
                 }else{
+                    Calendar calendar = Calendar.getInstance();
+                    final int year = calendar.get(Calendar.YEAR);
+                    String year_string = Integer.toString(year);
+                    final int month = calendar.get(Calendar.MONTH);
+                    String month_string = Integer.toString(month);
+                    final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    String day_string = Integer.toString(day);
+                    StringBuffer buf = new StringBuffer();
+                    buf.append(year_string);
+                    buf.append(month_string);
+                    buf.append(day_string);
+                    //後はその日のなんばんめに登録したかを付け加えるだけ
                     Two_words two_words = new Two_words(group_name, japanese_string, english_string);
                     //two_words.save();
                     adapter.add(two_words);
