@@ -11,7 +11,7 @@ import android.widget.TextView;
  * Created by naoto on 2017/06/04.
  */
 
-public class ListviewSetUp extends ArrayAdapter<Two_words> {
+public class ListviewSetUp extends ArrayAdapter<TwoWords> {
     Context mContext;
     LayoutInflater mLayoutInflater;
     int mCheck;
@@ -34,7 +34,7 @@ public class ListviewSetUp extends ArrayAdapter<Two_words> {
         } else {
             view_set_up = ((ViewSetUp) convertView.getTag());
         }
-        Two_words item = getItem(position);
+        TwoWords item = getItem(position);
         if(item != null){
             view_set_up.japanese_textview.setText(item.words_japanese);
             view_set_up.english_textview.setText(item.words_english);

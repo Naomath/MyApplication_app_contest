@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by naoto on 2017/06/04.
  */
 
-public class Two_words extends SugarRecord {
+public class TwoWords extends SugarRecord {
     //一単語づつで管理する
     String title;
     //グループの名前
@@ -18,12 +18,12 @@ public class Two_words extends SugarRecord {
     //登録した日付の管理
     //stringで管理する
 
-    public Two_words(){
+    public TwoWords(){
         //普通のコンストラクタ
         //使うことはない
     }
 
-    public Two_words(String title, String words_japanese, String words_english, String date){
+    public TwoWords(String title, String words_japanese, String words_english, String date){
         this.title = title;
         this.words_japanese = words_japanese;
         this.words_english = words_english;

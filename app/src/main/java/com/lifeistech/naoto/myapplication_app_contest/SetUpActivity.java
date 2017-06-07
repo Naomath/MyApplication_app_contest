@@ -2,6 +2,7 @@ package com.lifeistech.naoto.myapplication_app_contest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -22,7 +23,7 @@ public class SetUpActivity extends AppCompatActivity {
     TextView title;
     ListviewSetUp adapter;
     ListView listView;
-    Words_sugar_orm words_sugar_orm[];
+    WordsSugarOrm words_sugar_orm[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +92,39 @@ public class SetUpActivity extends AppCompatActivity {
                     buf.append(year_string);
                     buf.append(month_string);
                     buf.append(day_string);
-                    //後はその日のなんばんめに登録したかを付け加えるだけ
-                    Two_words two_words = new Two_words(group_name, japanese_string, english_string);
+                    String date = buf.toString();
+                    SharedPreferences preferences = getSharedPreferences(date, MODE_PRIVATE);
+                    int number_of_day = preferences.getInt("number_of_day", 0);
+                    number_of_day ++;
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("number_of_day", number_of_day);
+                    editor.commit();
+                    StringBuffer buf2 = new StringBuffer();
+                    buf2.append(date);
+                    String string_number_of_day = new Integer(number_of_day).toString();
+                    buf2.append(string_number_of_day);
+                    String date2 = buf2.toString();
+                    TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
                     //two_words.save();
                     adapter.add(two_words);
+                    /*ここから、保存の概要について書く。
+                    まず、TwoWordsというクラス型で保存して、
+                    SugarORMを使う
+                    次に引数の説明
+                    まず最初にその単語が属するグループの名前
+                    ちなみに被るのはできれば回避したいので、
+                    登録の時に全件検索して、もし同じのがあれば確認のダイアログを出す
+                    そして二つ目は単語の和訳
+                    三つ目は単語のスペル（英単語想定している）
+                    そして最後にそのID
+                    付け方は、
+                    もし2017年8月27日に最初に登録し単語であれば、
+                    20178271
+                    となる（CalendarTestにて）
+                    IDはファイル名が2017年8月27日であれば、
+                    2017827となるようにしてある
+                    それで検索してやっている
+                    */
                 }
 
             }

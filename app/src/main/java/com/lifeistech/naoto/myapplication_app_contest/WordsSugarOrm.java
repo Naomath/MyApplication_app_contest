@@ -6,7 +6,7 @@ import com.orm.SugarRecord;
  * Created by naoto on 2017/05/22.
  */
 
-public class Words_sugar_orm extends SugarRecord {
+public class WordsSugarOrm extends SugarRecord {
     String title;
     //グループの名前
     String words_japanese[];
@@ -14,12 +14,12 @@ public class Words_sugar_orm extends SugarRecord {
     String words_english[];
     //wordのスペルの管理
 
-    public Words_sugar_orm(){
+    public WordsSugarOrm(){
         //普通のコンストラクタ
         //使うことはない
     }
 
-    public Words_sugar_orm(String title, String words_japanese[], String words_english[]){
+    public WordsSugarOrm(String title, String words_japanese[], String words_english[]){
         this.title = title;
         this.words_japanese = words_japanese;
         this.words_english = words_english;
