@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.orm.SugarRecord;
+
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //今日の問題を解く時の処理
+
+
+
                         Intent intent = new Intent(MainActivity.this, SolveActivity.class);
                         intent.putExtra("test",3);
                         startActivity(intent);
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String group_name = editText.getText().toString();
+                SugarRecord.listAll(TwoWords.class);
                 if(group_name.length()==0){
                     make_Toast("グループの名前が登録されていません");
                 }else{
@@ -105,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void make_Toast(String massage){
-        Toast.makeText(this,massage,Toast.LENGTH_SHORT).show();
+    public void make_Toast(String message){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
 
     }
 }
