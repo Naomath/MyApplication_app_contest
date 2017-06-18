@@ -23,7 +23,6 @@ public class SetUpActivity extends AppCompatActivity {
     TextView title;
     ListviewSetUp adapter;
     ListView listView;
-    WordsSugarOrm words_sugar_orm[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,32 +80,8 @@ public class SetUpActivity extends AppCompatActivity {
                 } else if(english_edttText == null){
                     make_Toast("スペルが書かれていません");
                 }else{
-                    Calendar calendar = Calendar.getInstance();
-                    final int year = calendar.get(Calendar.YEAR);
-                    String year_string = Integer.toString(year);
-                    final int month = calendar.get(Calendar.MONTH);
-                    String month_string = Integer.toString(month);
-                    final int day = calendar.get(Calendar.DAY_OF_MONTH);
-                    String day_string = Integer.toString(day);
-                    StringBuffer buf = new StringBuffer();
-                    buf.append(year_string);
-                    buf.append(month_string);
-                    buf.append(day_string);
-                    String date = buf.toString();
-                    SharedPreferences preferences = getSharedPreferences(date, MODE_PRIVATE);
-                    int number_of_day = preferences.getInt("number_of_day", 0);
-                    number_of_day ++;
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putInt("number_of_day", number_of_day);
-                    editor.commit();
-                    StringBuffer buf2 = new StringBuffer();
-                    buf2.append(date);
-                    String string_number_of_day = new Integer(number_of_day).toString();
-                    buf2.append(string_number_of_day);
-                    String date2 = buf2.toString();
-                    TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
-                    two_words.save();
-                    adapter.add(two_words);
+                    TwoWordsForSet twoWordsForSet = new TwoWordsForSet(japanese_string, english_string);
+                    adapter.add(twoWordsForSet);
                     /*ここから、保存の概要について書く。
                     まず、TwoWordsというクラス型で保存して、
                     SugarORMを使う説明
@@ -149,9 +124,43 @@ public class SetUpActivity extends AppCompatActivity {
             }
         });
         builder.setPositiveButton("登録", new DialogInterface.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //登録する時の処理
+                int firstVisibleIndex = listView.getFirstVisiblePosition();
+                int lastVisibleIndex = listView.getLastVisiblePosition();
+                for(;firstVisibleIndex <= lastVisibleIndex;firstVisibleIndex++){
+                    //for文でlistviewのセルの上から登録していく
+                    TwoWordsForSet twoWordsForSet = (TwoWordsForSet) adapter.getItem(firstVisibleIndex);
+                    String japanese_string = twoWordsForSet.getJapanese();
+                    String english_string = twoWordsForSet.getEnglish();
+                    Calendar calendar = Calendar.getInstance();
+                    final int year = calendar.get(Calendar.YEAR);
+                    String year_string = Integer.toString(year);
+                    final int month = calendar.get(Calendar.MONTH);
+                    String month_string = Integer.toString(month);
+                    final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    String day_string = Integer.toString(day);
+                    StringBuffer buf = new StringBuffer();
+                    buf.append(year_string);
+                    buf.append(month_string);
+                    buf.append(day_string);
+                    String date = buf.toString();
+                    SharedPreferences preferences = getSharedPreferences(date, MODE_PRIVATE);
+                    int number_of_day = preferences.getInt("number_of_day", 0);
+                    number_of_day ++;
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("number_of_day", number_of_day);
+                    editor.commit();
+                    StringBuffer buf2 = new StringBuffer();
+                    buf2.append(date);
+                    String string_number_of_day = new Integer(number_of_day).toString();
+                    buf2.append(string_number_of_day);
+                    String date2 = buf2.toString();
+                    TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
+                    two_words.save();
+                }
 
                 Intent intent = new Intent(SetUpActivity.this,ListActivity.class);
                 startActivity(intent);
