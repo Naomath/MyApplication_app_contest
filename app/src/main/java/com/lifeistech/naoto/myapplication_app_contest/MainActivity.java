@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String group_name = editText.getText().toString();
-                SugarRecord.listAll(TwoWords.class);
+                //SugarRecord.listAll(TwoWords.class);
                 if(group_name.length()==0){
                     make_Toast("グループの名前が登録されていません");
                 }else{

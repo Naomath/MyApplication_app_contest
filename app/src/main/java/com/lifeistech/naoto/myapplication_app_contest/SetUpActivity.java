@@ -105,11 +105,15 @@ public class SetUpActivity extends AppCompatActivity {
                     buf2.append(string_number_of_day);
                     String date2 = buf2.toString();
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
-                    //two_words.save();
+                    two_words.save();
                     adapter.add(two_words);
                     /*ここから、保存の概要について書く。
                     まず、TwoWordsというクラス型で保存して、
-                    SugarORMを使う
+                    SugarORMを使う説明
+                    まず最初にその単語が属するグループの名前
+                    ちなみに被るのはできれば回避したいので、
+                    登録の時に全件検索して、もし同じのがあれば確認のダイアログを出す
+                    そして二つ目は単語
                     次に引数の説明
                     まず最初にその単語が属するグループの名前
                     ちなみに被るのはできれば回避したいので、
@@ -148,6 +152,7 @@ public class SetUpActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 //登録する時の処理
+
                 Intent intent = new Intent(SetUpActivity.this,ListActivity.class);
                 startActivity(intent);
             }
