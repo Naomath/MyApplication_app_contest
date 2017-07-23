@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class SetUpActivity extends AppCompatActivity {
 
     //問題を登録するActivity
@@ -23,6 +25,7 @@ public class SetUpActivity extends AppCompatActivity {
     TextView title;
     ListviewSetUp adapter;
     ListView listView;
+    ArrayList <TwoWords> list ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class SetUpActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listView);
         adapter = new ListviewSetUp(this, R.layout.listview_set_up);
         listView.setAdapter(adapter);
+        list = new ArrayList<TwoWords>();
     }
     public void dialog_set_up(View view){
         // 登録するためのダイアログへの受け渡し
@@ -130,9 +134,10 @@ public class SetUpActivity extends AppCompatActivity {
                 //登録する時の処理
                 int firstVisibleIndex = listView.getFirstVisiblePosition();
                 int lastVisibleIndex = listView.getLastVisiblePosition();
-                for(;firstVisibleIndex <= lastVisibleIndex;firstVisibleIndex++){
+                // 一気に登録している
+                for(int i2 = firstVisibleIndex; firstVisibleIndex <= lastVisibleIndex; i2++){
                     //for文でlistviewのセルの上から登録していく
-                    TwoWordsForSet twoWordsForSet = (TwoWordsForSet) adapter.getItem(firstVisibleIndex);
+                    TwoWordsForSet twoWordsForSet = (TwoWordsForSet) adapter.getItem(i2);
                     String japanese_string = twoWordsForSet.getJapanese();
                     String english_string = twoWordsForSet.getEnglish();
                     Calendar calendar = Calendar.getInstance();
@@ -160,8 +165,13 @@ public class SetUpActivity extends AppCompatActivity {
                     String date2 = buf2.toString();
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
                     two_words.save();
+                    list.add(two_words);
+                    //ここでlistにtwoewordsを入れる
                 }
-
+                make_Toast("登録しました");
+                GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, list);
+                groupTwoWords.save();
+                //ここでグループとしても登録する
                 Intent intent = new Intent(SetUpActivity.this,ListActivity.class);
                 startActivity(intent);
             }
