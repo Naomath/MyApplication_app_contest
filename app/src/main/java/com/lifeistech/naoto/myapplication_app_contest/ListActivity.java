@@ -17,6 +17,7 @@ public class ListActivity extends AppCompatActivity {
         SugarRecord.listAll(TwoWords.class);
         for(long i = 0;;i++){
             TwoWords twowords = SugarRecord.findById(TwoWords.class, i);
+
         }
     }
 

@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -117,7 +118,7 @@ public class SetUpActivity extends AppCompatActivity {
 
     public void finish(View view){
         //グループ自体、登録ができた時の処理
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("登録");
         builder.setMessage("登録していいですか？");
         builder.setNeutralButton("キャンセル", new DialogInterface.OnClickListener() {
@@ -176,6 +177,7 @@ public class SetUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        builder.show();
     }
 
     public void make_Toast(String massage){

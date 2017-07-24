@@ -22,6 +22,7 @@ public class TwoWordsForSet {
     }
 
     public String getJapanese(){
+
         return words_japanese;
     }
 

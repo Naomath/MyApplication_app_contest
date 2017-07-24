@@ -24,4 +24,8 @@ public class GroupTwoWords extends SugarRecord {
         this.LIST = LIST;
     }
 
+    public String getGROUP_NAME(){
+
+        return GROUP_NAME;
+    }
 }
