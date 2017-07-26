@@ -138,7 +138,7 @@ public class SetUpActivity extends AppCompatActivity {
                 // 一気に登録している
                 for(int i2 = firstVisibleIndex; firstVisibleIndex <= lastVisibleIndex; i2++){
                     //for文でlistviewのセルの上から登録していく
-                    TwoWordsForSet twoWordsForSet = (TwoWordsForSet) adapter.getItem(i2);
+                    TwoWordsForSet twoWordsForSet = (TwoWordsForSet)adapter.getItem(i2);
                     String japanese_string = twoWordsForSet.getJapanese();
                     String english_string = twoWordsForSet.getEnglish();
                     Calendar calendar = Calendar.getInstance();

@@ -29,4 +29,6 @@ public class TwoWords extends SugarRecord {
         this.words_english = words_english;
         this.date = date;
     }
+
+
 }

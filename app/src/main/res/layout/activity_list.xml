@@ -8,17 +8,10 @@
 
     <ListView
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <menu
-        xmlns:android="http://schemas.android.com/apk/res/android">
-        <item
-            android:id="@+id/menu_settings"
-            android:showAsAction="never"
-            android:title="HOME"/>
+        android:layout_alignParentStart="true"
+        android:id="@+id/listView2"/>
 
-    </menu>
 </RelativeLayout>

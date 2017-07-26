@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 
 public class GroupTwoWords extends SugarRecord {
-    String GROUP_NAME;
+    private String GROUP_NAME;
     //グループの名前
     ArrayList LIST;
     // リストのフィールド
