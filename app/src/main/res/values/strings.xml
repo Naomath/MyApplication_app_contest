@@ -5,4 +5,5 @@
     <string name="dialog_today">今日の問題</string>
     <string name="dialog_weak"> 間違えやすい問題</string>
     <string name="dialog_cancel">キャンセル</string>
+    <string name="title_activity_list_group_words">ListGroupWordsActivity</string>
 </resources>
