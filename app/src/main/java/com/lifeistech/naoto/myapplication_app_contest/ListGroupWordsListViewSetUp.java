@@ -11,7 +11,7 @@ import android.widget.TextView;
  * Created by naoto on 2017/07/27.
  */
 
-public class ListGroupWordsListViewSetUp extends ArrayAdapter<TwoWordsNotSugarOrm>{
+public class ListGroupWordsListViewSetUp extends ArrayAdapter<TwoWords>{
     Context mContext;
     LayoutInflater mLayoutInflater;
     int mCheck;
@@ -34,7 +34,7 @@ public class ListGroupWordsListViewSetUp extends ArrayAdapter<TwoWordsNotSugarOr
         } else {
             view_set_up = ((ListGroupWordsListViewSetUp.ViewSetUp3) convertView.getTag());
         }
-        TwoWordsNotSugarOrm item = getItem(position);
+        TwoWords item = getItem(position);
         if(item != null){
             view_set_up.japanese_textview.setText(item.getJapanese());
             view_set_up.english_textview.setText(item.getEnglish());

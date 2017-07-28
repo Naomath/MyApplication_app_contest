@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class GroupTwoWords extends SugarRecord {
     private String GROUP_NAME;
     //グループの名前
-    ArrayList LIST;
+    private ArrayList <TwoWords> LIST;
     // リストのフィールド
     public GroupTwoWords(){
         //普通のコンストラクタ
@@ -28,4 +28,6 @@ public class GroupTwoWords extends SugarRecord {
 
         return GROUP_NAME;
     }
+
+    public ArrayList getList(){return LIST;}
 }

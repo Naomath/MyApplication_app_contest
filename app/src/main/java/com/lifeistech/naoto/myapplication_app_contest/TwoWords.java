@@ -10,9 +10,9 @@ public class TwoWords extends SugarRecord {
     //一単語づつで管理する
     String title;
     //グループの名前
-    String words_japanese;
-    //wordの和訳
-    String words_english;
+    private String words_japanese;
+     //wordの和訳
+    private   String words_english;
     //wordのスペルの管理
     String date;
     //登録した日付の管理
@@ -30,5 +30,7 @@ public class TwoWords extends SugarRecord {
         this.date = date;
     }
 
+    public String getJapanese(){return words_japanese;}
 
+    public String getEnglish(){return  words_english;}
 }
