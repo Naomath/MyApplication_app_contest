@@ -136,7 +136,7 @@ public class SetUpActivity extends AppCompatActivity {
                 int firstVisibleIndex = listView.getFirstVisiblePosition();
                 int lastVisibleIndex = listView.getLastVisiblePosition();
                 // 一気に登録している
-                for(int i2 = firstVisibleIndex; firstVisibleIndex <= lastVisibleIndex; i2++){
+                for(int i2 = firstVisibleIndex; i2 <= lastVisibleIndex; i2++){
                     //for文でlistviewのセルの上から登録していく
                     TwoWordsForSet twoWordsForSet = (TwoWordsForSet)adapter.getItem(i2);
                     String japanese_string = twoWordsForSet.getJapanese();
@@ -165,9 +165,9 @@ public class SetUpActivity extends AppCompatActivity {
                     buf2.append(string_number_of_day);
                     String date2 = buf2.toString();
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
-                    two_words.save();
                     list.add(two_words);
                     //ここでlistにtwoewordsを入れる
+                    two_words.save();
                 }
                 make_Toast("登録しました");
                 GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, list);

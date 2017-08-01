@@ -14,20 +14,16 @@ public class GroupTwoWords extends SugarRecord {
     //グループの名前
     private ArrayList <TwoWords> LIST;
     // リストのフィールド
-    public GroupTwoWords(){
+
+    public GroupTwoWords(){}
         //普通のコンストラクタ
 
-    }
-
-    public GroupTwoWords(String GROUP_NAME, ArrayList LIST){
+    public GroupTwoWords(String GROUP_NAME, ArrayList <TwoWords> LIST){
         this.GROUP_NAME = GROUP_NAME;
         this.LIST = LIST;
     }
 
-    public String getGROUP_NAME(){
+    public String getGROUP_NAME(){return GROUP_NAME;}
 
-        return GROUP_NAME;
-    }
-
-    public ArrayList getList(){return LIST;}
+    public ArrayList<TwoWords> getList(){return LIST;}
 }
