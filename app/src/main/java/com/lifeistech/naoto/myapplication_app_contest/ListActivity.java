@@ -3,6 +3,7 @@ package com.lifeistech.naoto.myapplication_app_contest;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Adapter;
@@ -36,13 +37,13 @@ public class ListActivity extends AppCompatActivity {
             }
         });
         //グループの名前の呼び出し
-        SugarRecord.listAll(TwoWords.class);
+        SugarRecord.listAll(GroupTwoWords.class);
         for(long i = 1;;i++){
             GroupTwoWords groupTwoWords = SugarRecord.findById(GroupTwoWords.class, i);
-            if(groupTwoWords == null){
-                break;
-            }else {
+            if(groupTwoWords != null){
                 adapter.add(groupTwoWords);
+            }else {
+                break;
             }
         }
     }
