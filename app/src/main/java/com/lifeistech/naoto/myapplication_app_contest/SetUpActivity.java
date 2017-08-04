@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -26,7 +28,6 @@ public class SetUpActivity extends AppCompatActivity {
     TextView title;
     ListviewSetUp adapter;
     ListView listView;
-    ArrayList <TwoWords> list ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,25 @@ public class SetUpActivity extends AppCompatActivity {
         title.setText(group_name);
         listView = (ListView)findViewById(R.id.listView);
         adapter = new ListviewSetUp(this, R.layout.listview_set_up);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //処理
+                ArrayAdapter adapter = (ArrayAdapter)listView.getAdapter();
+                TwoWordsForSet item = (TwoWordsForSet) adapter.getItem(i);
+                adapter.remove(item);
+                return false;
+            }
+        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                make_Toast(String.valueOf(i));
+            }
+        });
         listView.setAdapter(adapter);
-        list = new ArrayList<TwoWords>();
     }
+
     public void dialog_set_up(View view){
         // 登録するためのダイアログへの受け渡し
         showDialog_set_up();
@@ -135,6 +152,8 @@ public class SetUpActivity extends AppCompatActivity {
                 //登録する時の処理
                 int firstVisibleIndex = listView.getFirstVisiblePosition();
                 int lastVisibleIndex = listView.getLastVisiblePosition();
+                int size = lastVisibleIndex - firstVisibleIndex + 1;
+                TwoWords[] twoWordses = new TwoWords[size];
                 // 一気に登録している
                 for(int i2 = firstVisibleIndex; i2 <= lastVisibleIndex; i2++){
                     //for文でlistviewのセルの上から登録していく
@@ -165,12 +184,12 @@ public class SetUpActivity extends AppCompatActivity {
                     buf2.append(string_number_of_day);
                     String date2 = buf2.toString();
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
-                    list.add(two_words);
-                    //ここでlistにtwoewordsを入れる
+                    twoWordses[i2] = two_words;
+                    //ここで配列にtwoewordsを入れる
                     two_words.save();
                 }
                 make_Toast("登録しました");
-                GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, list);
+                GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, twoWordses);
                 groupTwoWords.save();
                 //ここでグループとしても登録する
                 Intent intent = new Intent(SetUpActivity.this,MainActivity.class);

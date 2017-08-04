@@ -12,18 +12,21 @@ import java.util.ArrayList;
 public class GroupTwoWords extends SugarRecord {
     private String GROUP_NAME;
     //グループの名前
-    private ArrayList <TwoWords> LIST;
+    private TwoWords [] twoWordses;
     // リストのフィールド
+    int  size;
 
     public GroupTwoWords(){}
         //普通のコンストラクタ
 
-    public GroupTwoWords(String GROUP_NAME, ArrayList <TwoWords> LIST){
+    public GroupTwoWords(String GROUP_NAME, TwoWords [] twoWordses){
         this.GROUP_NAME = GROUP_NAME;
-        this.LIST = LIST;
+        size = twoWordses.length;
+        this.twoWordses = new TwoWords[size];
+        this.twoWordses = twoWordses;
     }
 
     public String getGROUP_NAME(){return GROUP_NAME;}
 
-    public ArrayList<TwoWords> getList(){return LIST;}
+    public TwoWords[] getTwoWordses(){return twoWordses;}
 }

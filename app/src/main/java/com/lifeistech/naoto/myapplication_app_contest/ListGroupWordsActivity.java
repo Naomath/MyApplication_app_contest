@@ -23,19 +23,11 @@ public class ListGroupWordsActivity extends AppCompatActivity {
         //listviewの設定終了
         SugarRecord.listAll(GroupTwoWords.class);
         GroupTwoWords groupTwoWords = SugarRecord.findById(GroupTwoWords.class, id);
-        ArrayList<TwoWords> list;
-        list = groupTwoWords.getList();
-        String test = groupTwoWords.getGROUP_NAME();
-        if(list != null){
-            Log.d("test","ok");
-        }else {
-            Log.d("test","no");
-        }
+        TwoWords twoWordses [] = groupTwoWords.getTwoWordses();
         //うまく呼び出しはされている
         SugarRecord.listAll(TwoWords.class);
         for(int i = 0;; i++){
-            TwoWords twoWords;
-            twoWords = list.get(i);
+            TwoWords twoWords = twoWordses[i];
             if(twoWords != null){
                 adapter.add(twoWords);
             }else {
@@ -43,5 +35,8 @@ public class ListGroupWordsActivity extends AppCompatActivity {
             }
             //twowordsをadapterにセットしている
         }
+
+
+
     }
 }
