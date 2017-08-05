@@ -163,7 +163,8 @@ public class SetUpActivity extends AppCompatActivity {
                     Calendar calendar = Calendar.getInstance();
                     final int year = calendar.get(Calendar.YEAR);
                     String year_string = Integer.toString(year);
-                    final int month = calendar.get(Calendar.MONTH);
+                    final int month = calendar.get(Calendar.MONTH) + 1;
+                    //calendarクラスの月の値は0から始まる
                     String month_string = Integer.toString(month);
                     final int day = calendar.get(Calendar.DAY_OF_MONTH);
                     String day_string = Integer.toString(day);
@@ -184,9 +185,9 @@ public class SetUpActivity extends AppCompatActivity {
                     buf2.append(string_number_of_day);
                     String date2 = buf2.toString();
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
-                    twoWordses[i2] = two_words;
                     //ここで配列にtwoewordsを入れる
                     two_words.save();
+                    twoWordses[i2] = two_words;
                 }
                 make_Toast("登録しました");
                 GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, twoWordses);

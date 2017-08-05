@@ -14,14 +14,14 @@ public class GroupTwoWords extends SugarRecord {
     //グループの名前
     private TwoWords [] twoWordses;
     // リストのフィールド
-    int  size;
 
     public GroupTwoWords(){}
         //普通のコンストラクタ
 
-    public GroupTwoWords(String GROUP_NAME, TwoWords [] twoWordses){
+    public GroupTwoWords(String GROUP_NAME, TwoWords[] twoWordses){
         this.GROUP_NAME = GROUP_NAME;
-        size = twoWordses.length;
+        int size = twoWordses.length;
+        twoWordses = new TwoWords[size];
         this.twoWordses = new TwoWords[size];
         this.twoWordses = twoWordses;
     }
