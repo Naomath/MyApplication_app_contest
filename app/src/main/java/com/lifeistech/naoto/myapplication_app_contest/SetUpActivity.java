@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lifeistech.naoto.myapplication_app_contest.util.Util;
+
 import java.util.ArrayList;
 
 public class SetUpActivity extends AppCompatActivity {
@@ -201,5 +203,7 @@ public class SetUpActivity extends AppCompatActivity {
 
     public void make_Toast(String massage){
         Toast.makeText(this,massage,Toast.LENGTH_SHORT).show();
+        // ちなみにここは、massageではなくmessage
+        Util.makeToast(this, massage);
     }
 }
