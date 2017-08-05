@@ -39,7 +39,7 @@ public class ListActivity extends AppCompatActivity {
         //グループの名前の呼び出し
         SugarRecord.listAll(GroupTwoWords.class);
         for(long i = 1;;i++){
-            GroupTwoWords groupTwoWords = SugarRecord.findById(GroupTwoWords.class, i);
+            GroupTwoWords groupTwoWords = GroupTwoWords.findById(GroupTwoWords.class, i);
             if(groupTwoWords != null){
                 adapter.add(groupTwoWords);
             }else {

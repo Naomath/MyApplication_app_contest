@@ -22,12 +22,12 @@ public class ListGroupWordsActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         //listviewの設定終了
         SugarRecord.listAll(GroupTwoWords.class);
-        GroupTwoWords groupTwoWords = SugarRecord.findById(GroupTwoWords.class, id);
-        TwoWords twoWordses [] = groupTwoWords.getTwoWordses();
+        GroupTwoWords groupTwoWords = GroupTwoWords.findById(GroupTwoWords.class, id);
+        long [] ids = groupTwoWords.getIds();
         //うまく呼び出しはされている
         SugarRecord.listAll(TwoWords.class);
         for(int i = 0;; i++){
-            TwoWords twoWords = twoWordses[i];
+            TwoWords twoWords = TwoWords.findById(TwoWords.class,ids[i]);
             if(twoWords != null){
                 adapter.add(twoWords);
             }else {

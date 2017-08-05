@@ -153,7 +153,7 @@ public class SetUpActivity extends AppCompatActivity {
                 int firstVisibleIndex = listView.getFirstVisiblePosition();
                 int lastVisibleIndex = listView.getLastVisiblePosition();
                 int size = lastVisibleIndex - firstVisibleIndex + 1;
-                TwoWords[] twoWordses = new TwoWords[size];
+                long [] list = new long[size];
                 // 一気に登録している
                 for(int i2 = firstVisibleIndex; i2 <= lastVisibleIndex; i2++){
                     //for文でlistviewのセルの上から登録していく
@@ -187,10 +187,11 @@ public class SetUpActivity extends AppCompatActivity {
                     TwoWords two_words = new TwoWords(group_name, japanese_string, english_string, date2);
                     //ここで配列にtwoewordsを入れる
                     two_words.save();
-                    twoWordses[i2] = two_words;
+                    list[i2]=two_words.getId();
+                    Log.d("test",String.valueOf(list[i2]));
                 }
                 make_Toast("登録しました");
-                GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, twoWordses);
+                GroupTwoWords groupTwoWords = new GroupTwoWords(group_name, list);
                 groupTwoWords.save();
                 //ここでグループとしても登録する
                 Intent intent = new Intent(SetUpActivity.this,MainActivity.class);
